@@ -8,7 +8,7 @@
 //
 
 void
-_main()
+_main()   // 默认的程序入口点
 {
   extern int main();
   main();
@@ -21,7 +21,7 @@ strcpy(char *s, const char *t)
   char *os;
 
   os = s;
-  while((*s++ = *t++) != 0)
+  while((*s++ = *t++) != 0)   // 先赋值，后++
     ;
   return os;
 }
@@ -47,7 +47,7 @@ strlen(const char *s)
 void*
 memset(void *dst, int c, uint n)
 {
-  char *cdst = (char *) dst;
+  char *cdst = (char *) dst; // 将dst转换为字符指针，以便逐字节操作
   int i;
   for(i = 0; i < n; i++){
     cdst[i] = c;
@@ -78,7 +78,7 @@ gets(char *buf, int max)
     if(c == '\n' || c == '\r')
       break;
   }
-  buf[i] = '\0';
+  buf[i] = '\0';  // 在末尾添加结束符
   return buf;
 }
 
@@ -106,7 +106,11 @@ atoi(const char *s)
     n = n*10 + *s++ - '0';
   return n;
 }
-
+/**
+ * 该函数与memcpy的区别在于，它能够正确处理源和目标内存区域重叠的情况。
+ * 当源区域在目标区域之前时，从前往后复制；当源区域在目标区域之后时，从后往前复制，
+ * 以避免数据被错误地覆盖。函数的设计允许复制的内存区域完全重叠，甚至是完全相同的情况
+*/
 void*
 memmove(void *vdst, const void *vsrc, int n)
 {
@@ -115,10 +119,10 @@ memmove(void *vdst, const void *vsrc, int n)
 
   dst = vdst;
   src = vsrc;
-  if (src > dst) {
+  if (src > dst) {   // 如果src在dst的前面，则从前往后复制；
     while(n-- > 0)
       *dst++ = *src++;
-  } else {
+  } else {  // 如果src在dst的后面，则从后往前复制
     dst += n;
     src += n;
     while(n-- > 0)

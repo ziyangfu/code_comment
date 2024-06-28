@@ -1,5 +1,5 @@
 OUTPUT_ARCH( "riscv" )
-ENTRY( _main )
+ENTRY( _main )   /* 默认程序入口点 */
 
 
 SECTIONS

@@ -77,10 +77,10 @@ main(int argc, char *argv[])
   int i;
 
   if(argc < 2){
-    ls(".");
+    ls(".");     // 若不加地址，则显示本目录下的文件
     exit(0);
   }
   for(i=1; i<argc; i++)
-    ls(argv[i]);
+    ls(argv[i]);  // 加地址，则分别显示
   exit(0);
 }

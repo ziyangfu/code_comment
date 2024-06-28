@@ -14,9 +14,10 @@ struct file {
 #define	mkdev(m,n)  ((uint)((m)<<16| (n)))
 
 // in-memory copy of an inode
+// 描述保存给定文件的元数据的结构
 struct inode {
   uint dev;           // Device number
-  uint inum;          // Inode number
+  uint inum;          // Inode numberds 
   int ref;            // Reference count
   struct sleeplock lock; // protects everything below here
   int valid;          // inode has been read from disk?

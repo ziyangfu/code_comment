@@ -9,9 +9,10 @@ static char digits[] = "0123456789ABCDEF";
 static void
 putc(int fd, char c)
 {
-  write(fd, &c, 1);
+  write(fd, &c, 1);   // printf最终是使用write系统调用将数据写在fd上
 }
-
+// 将一个整数按照指定的进制和符号转换为字符串，并输出到指定的文件描述符上
+// base： 进制
 static void
 printint(int fd, int xx, int base, int sgn)
 {
@@ -20,7 +21,7 @@ printint(int fd, int xx, int base, int sgn)
   uint x;
 
   neg = 0;
-  if(sgn && xx < 0){
+  if(sgn && xx < 0){   // 判断是否需要加负号
     neg = 1;
     x = -xx;
   } else {
@@ -37,7 +38,7 @@ printint(int fd, int xx, int base, int sgn)
   while(--i >= 0)
     putc(fd, buf[i]);
 }
-
+// 将一个64位无符号整数（uint64）以十六进制的形式输出到指定的文件描述符（fd）中
 static void
 printptr(int fd, uint64 x) {
   int i;
@@ -107,7 +108,8 @@ void
 printf(const char *fmt, ...)
 {
   va_list ap;
-
-  va_start(ap, fmt);
-  vprintf(1, fmt, ap);
+  // 是一个编译器内置函数，用于获取可变参数列表的起始地址，并将其存储在ap变量中。
+  // 使用va_start宏定义后，可以通过ap变量来访问可变参数列表中的参数。
+  va_start(ap, fmt);  
+  vprintf(1, fmt, ap);  // 标准输出
 }
