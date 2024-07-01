@@ -43,11 +43,11 @@ ls(char *path)
 
   switch(st.type){
   case T_DEVICE:
-  case T_FILE:
+  case T_FILE:  // 如果给的路径直接是一个文件，则直接打印
     printf("%s %d %d %l\n", fmtname(path), st.type, st.ino, st.size);
     break;
 
-  case T_DIR:
+  case T_DIR:   // 如果给的路径是一个目录，则循环遍历该目录下的文件
     if(strlen(path) + 1 + DIRSIZ + 1 > sizeof buf){
       printf("ls: path too long\n");
       break;
@@ -56,7 +56,7 @@ ls(char *path)
     p = buf+strlen(buf);
     *p++ = '/';
     while(read(fd, &de, sizeof(de)) == sizeof(de)){
-      if(de.inum == 0)
+      if(de.inum == 0)  // 表示该目录项是一个空项或者未被使用的项
         continue;
       memmove(p, de.name, DIRSIZ);
       p[DIRSIZ] = 0;

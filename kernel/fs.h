@@ -11,6 +11,7 @@
 //
 // mkfs computes the super block and builds an initial file system. The
 // super block describes the disk layout:
+// 描述磁盘布局的超级块
 struct superblock {
   uint magic;        // Must be FSMAGIC
   uint size;         // Size of file system image (blocks)
@@ -52,9 +53,9 @@ struct dinode {
 
 // Directory is a file containing a sequence of dirent structures.
 #define DIRSIZ 14
-
+// 表示目录项信息
 struct dirent {
-  ushort inum;
-  char name[DIRSIZ];
+  ushort inum;         // 该目录项对应的 inode 号
+  char name[DIRSIZ];   // 目录项的名称
 };
 

@@ -44,7 +44,7 @@ void die(const char *);
 
 // convert to riscv byte order
 ushort
-xshort(ushort x)
+xshort(ushort x)  // 转换字节序
 {
   ushort y;
   uchar *a = (uchar*)&y;

@@ -2,6 +2,8 @@
 #include "kernel/stat.h"
 #include "user/user.h"
 
+// 对指定的文件或标准输入进行统计,  统计行数, 字数, 字符数
+
 char buf[512];
 
 void

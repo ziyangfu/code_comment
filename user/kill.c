@@ -12,6 +12,6 @@ main(int argc, char **argv)
     exit(1);
   }
   for(i=1; i<argc; i++)
-    kill(atoi(argv[i]));
+    kill(atoi(argv[i]));  // 从标准输入中输入的是字符串，所以用atoi转换成整数
   exit(0);
 }

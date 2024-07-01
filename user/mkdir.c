@@ -13,7 +13,7 @@ main(int argc, char *argv[])
   }
 
   for(i = 1; i < argc; i++){
-    if(mkdir(argv[i]) < 0){
+    if(mkdir(argv[i]) < 0){   // 直接调用mkdir系统调用
       fprintf(2, "mkdir: %s failed to create\n", argv[i]);
       break;
     }
